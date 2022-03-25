@@ -1,0 +1,54 @@
+-* 语法分析 *- 重新标记后的词语ID
+2	not	3	(	
+3	(	5	1	
+6	==	5	1	
+4	)	0	or	
+3	(	5	2	
+6	!=	5	3	
+4	)	1	and	
+3	(	5	a	
+6	>=	5	b	
+4	)	0	or	
+7	true	4	)	
+9	#	
+-* 语法分析 *- 词语串如下
+$ not ( ( 1 == 1 ) or ( 2 != 3 ) and ( a >= b ) or true ) # 
+-* 语法分析 *- 开始		文件: code02\
+过程号，状态栈 → 符号栈 → 待输入串
+0   → 0  → $  → not ( ( id rop id ) or ( id rop id ) and ( id rop id ) or true ) # 
+1   → 0 2  → $ not  → ( ( id rop id ) or ( id rop id ) and ( id rop id ) or true ) # 
+2   → 0 2 3  → $ not (  → ( id rop id ) or ( id rop id ) and ( id rop id ) or true ) # 
+3   → 0 2 3 3  → $ not ( (  → id rop id ) or ( id rop id ) and ( id rop id ) or true ) # 
+4   → 0 2 3 3 4  → $ not ( ( id  → rop id ) or ( id rop id ) and ( id rop id ) or true ) # 
+5   → 0 2 3 3 4 11  → $ not ( ( id rop  → id ) or ( id rop id ) and ( id rop id ) or true ) # 
+6   → 0 2 3 3 4 11 12  → $ not ( ( id rop id  → ) or ( id rop id ) and ( id rop id ) or true ) # 
+7   → 0 2 3 3 10  → $ not ( ( E  → ) or ( id rop id ) and ( id rop id ) or true ) # 
+8   → 0 2 3 3 10 15  → $ not ( ( E )  → or ( id rop id ) and ( id rop id ) or true ) # 
+9   → 0 2 3 10  → $ not ( E  → or ( id rop id ) and ( id rop id ) or true ) # 
+10  → 0 2 3 10 7  → $ not ( E or  → ( id rop id ) and ( id rop id ) or true ) # 
+11  → 0 2 3 10 7 3  → $ not ( E or (  → id rop id ) and ( id rop id ) or true ) # 
+12  → 0 2 3 10 7 3 4  → $ not ( E or ( id  → rop id ) and ( id rop id ) or true ) # 
+13  → 0 2 3 10 7 3 4 11  → $ not ( E or ( id rop  → id ) and ( id rop id ) or true ) # 
+14  → 0 2 3 10 7 3 4 11 12  → $ not ( E or ( id rop id  → ) and ( id rop id ) or true ) # 
+15  → 0 2 3 10 7 3 10  → $ not ( E or ( E  → ) and ( id rop id ) or true ) # 
+16  → 0 2 3 10 7 3 10 15  → $ not ( E or ( E )  → and ( id rop id ) or true ) # 
+17  → 0 2 3 10 7 13  → $ not ( E or E  → and ( id rop id ) or true ) # 
+18  → 0 2 3 10 7 13 8  → $ not ( E or E and  → ( id rop id ) or true ) # 
+19  → 0 2 3 10 7 13 8 3  → $ not ( E or E and (  → id rop id ) or true ) # 
+20  → 0 2 3 10 7 13 8 3 4  → $ not ( E or E and ( id  → rop id ) or true ) # 
+21  → 0 2 3 10 7 13 8 3 4 11  → $ not ( E or E and ( id rop  → id ) or true ) # 
+22  → 0 2 3 10 7 13 8 3 4 11 12  → $ not ( E or E and ( id rop id  → ) or true ) # 
+23  → 0 2 3 10 7 13 8 3 10  → $ not ( E or E and ( E  → ) or true ) # 
+24  → 0 2 3 10 7 13 8 3 10 15  → $ not ( E or E and ( E )  → or true ) # 
+25  → 0 2 3 10 7 13 8 14  → $ not ( E or E and E  → or true ) # 
+26  → 0 2 3 10 7 13  → $ not ( E or E  → or true ) # 
+27  → 0 2 3 10  → $ not ( E  → or true ) # 
+28  → 0 2 3 10 7  → $ not ( E or  → true ) # 
+29  → 0 2 3 10 7 5  → $ not ( E or true  → ) # 
+30  → 0 2 3 10 7 13  → $ not ( E or E  → ) # 
+31  → 0 2 3 10  → $ not ( E  → ) # 
+32  → 0 2 3 10 15  → $ not ( E )  → # 
+33  → 0 2 9  → $ not E  → # 
+34  → 0 1  → $ E  → # 
+acc
+☆ 语法分析没有错误

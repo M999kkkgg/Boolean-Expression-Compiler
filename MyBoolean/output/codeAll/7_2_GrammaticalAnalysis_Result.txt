@@ -1,0 +1,35 @@
+-* 语法分析 *- 重新标记后的词语ID
+3	(	8	false	
+0	or	3	(	
+5	64	6	==	
+5	a	4	)	
+4	)	1	and	
+2	not	7	true	
+9	#	
+-* 语法分析 *- 词语串如下
+$ ( false or ( 64 == a ) ) and not true # 
+-* 语法分析 *- 开始		文件: code07.txt
+过程号，状态栈 → 符号栈 → 待输入串
+0   → 0  → $  → ( false or ( id rop id ) ) and not true # 
+1   → 0 3  → $ (  → false or ( id rop id ) ) and not true # 
+2   → 0 3 6  → $ ( false  → or ( id rop id ) ) and not true # 
+3   → 0 3 10  → $ ( E  → or ( id rop id ) ) and not true # 
+4   → 0 3 10 7  → $ ( E or  → ( id rop id ) ) and not true # 
+5   → 0 3 10 7 3  → $ ( E or (  → id rop id ) ) and not true # 
+6   → 0 3 10 7 3 4  → $ ( E or ( id  → rop id ) ) and not true # 
+7   → 0 3 10 7 3 4 11  → $ ( E or ( id rop  → id ) ) and not true # 
+8   → 0 3 10 7 3 4 11 12  → $ ( E or ( id rop id  → ) ) and not true # 
+9   → 0 3 10 7 3 10  → $ ( E or ( E  → ) ) and not true # 
+10  → 0 3 10 7 3 10 15  → $ ( E or ( E )  → ) and not true # 
+11  → 0 3 10 7 13  → $ ( E or E  → ) and not true # 
+12  → 0 3 10  → $ ( E  → ) and not true # 
+13  → 0 3 10 15  → $ ( E )  → and not true # 
+14  → 0 1  → $ E  → and not true # 
+15  → 0 1 8  → $ E and  → not true # 
+16  → 0 1 8 2  → $ E and not  → true # 
+17  → 0 1 8 2 5  → $ E and not true  → # 
+18  → 0 1 8 2 9  → $ E and not E  → # 
+19  → 0 1 8 14  → $ E and E  → # 
+20  → 0 1  → $ E  → # 
+acc
+☆ 语法分析没有错误

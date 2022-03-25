@@ -1,0 +1,13 @@
+abs (("A" and 'a') flase or -3.21.3 !>= 7)#
+(1 != 'a') and op#
+(false or (1!=2))and 'j'#
+or 2.3 and 'a'#
+(( false or true)#
+not (4 or 'a')#
+(1!=-2.32)and(not 3>='a' or false)#
+(false or(64 == 'a')   ) and not true#
+(1>=2.3) and ('a'!=3) or true#
+not true#
+false#
+2 != 3#
+not((1==1) or (2!=3) and ('a'>='b')or true)#

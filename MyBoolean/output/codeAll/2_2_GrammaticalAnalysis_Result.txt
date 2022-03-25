@@ -1,0 +1,31 @@
+-* 语法分析 *- 重新标记后的词语ID
+3	(	8	false	
+0	or	3	(	
+5	1	6	!=	
+5	2	4	)	
+4	)	1	and	
+5	j	9	#	
+-* 语法分析 *- 词语串如下
+$ ( false or ( 1 != 2 ) ) and j # 
+-* 语法分析 *- 开始		文件: code02.txt
+过程号，状态栈 → 符号栈 → 待输入串
+0   → 0  → $  → ( false or ( id rop id ) ) and id # 
+1   → 0 3  → $ (  → false or ( id rop id ) ) and id # 
+2   → 0 3 6  → $ ( false  → or ( id rop id ) ) and id # 
+3   → 0 3 10  → $ ( E  → or ( id rop id ) ) and id # 
+4   → 0 3 10 7  → $ ( E or  → ( id rop id ) ) and id # 
+5   → 0 3 10 7 3  → $ ( E or (  → id rop id ) ) and id # 
+6   → 0 3 10 7 3 4  → $ ( E or ( id  → rop id ) ) and id # 
+7   → 0 3 10 7 3 4 11  → $ ( E or ( id rop  → id ) ) and id # 
+8   → 0 3 10 7 3 4 11 12  → $ ( E or ( id rop id  → ) ) and id # 
+9   → 0 3 10 7 3 10  → $ ( E or ( E  → ) ) and id # 
+10  → 0 3 10 7 3 10 15  → $ ( E or ( E )  → ) and id # 
+11  → 0 3 10 7 13  → $ ( E or E  → ) and id # 
+12  → 0 3 10  → $ ( E  → ) and id # 
+13  → 0 3 10 15  → $ ( E )  → and id # 
+14  → 0 1  → $ E  → and id # 
+15  → 0 1 8  → $ E and  → id # 
+16  → 0 1 8 4  → $ E and id  → # 
+ERROR(24): 字母或数字后缺少运算符。
+	文件: code02.txt	行: 1
+	可行的修改方案: 在出错位置添加合适运算符。

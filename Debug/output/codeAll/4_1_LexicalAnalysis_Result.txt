@@ -1,0 +1,14 @@
+-* 词法分析 *- 开始		文件: code04.txt
+-* 词法分析 *- 状态转换过程	文件: code04.txt
+0	0	2	0	2	0	0	22	22	22	
+22	22	4	0	0	22	22	4	0	0	
+22	22	22	22	4	0	3	0	16	-* 词法分析 *- 完成	文件: code04.txt
+序号	一级分类		二级分类	行标记	字符(串)
+0	Boundary symbol		None		1	(
+1	Boundary symbol		None		1	(
+2	Reserved symbol		false		1	false
+3	Reserved symbol		or		1	or
+4	Reserved symbol		true		1	true
+5	Boundary symbol		None		1	)
+6	End symbol		None		1	#
+-* 词法分析 *- 共搜集到错误 0 条	文件: code04.txt

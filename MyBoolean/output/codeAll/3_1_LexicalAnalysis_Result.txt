@@ -1,0 +1,13 @@
+-* 词法分析 *- 开始		文件: code03.txt
+-* 词法分析 *- 状态转换过程	文件: code03.txt
+0	0	22	22	4	0	0	30	31	31	
+14	0	0	22	22	22	4	0	0	20	
+21	1	0	16	
+-* 词法分析 *- 完成	文件: code03.txt
+序号	一级分类		二级分类	行标记	字符(串)
+0	Reserved symbol		or		1	or
+1	Number symbol		+Double		1	2.3
+2	Reserved symbol		and		1	and
+3	Letter symbol		None		1	a
+4	End symbol		None		1	#
+-* 词法分析 *- 共搜集到错误 0 条	文件: code03.txt

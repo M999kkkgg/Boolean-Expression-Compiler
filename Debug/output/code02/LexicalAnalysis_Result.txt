@@ -1,0 +1,30 @@
+-* 词法分析分析结果 *-
+分析过程中的状态转换
+0	2	0	0	22	22	22	22	4	0	
+0	22	22	4	0	0	22	22	22	22	
+22	4	0	0	3	0	0	22	22	22	
+4	0	0	2	0	30	13	0	0	25	
+9	0	0	30	13	0	3	0	0	22	
+22	4	0	2	0	0	20	21	1	0	
+0	24	7	0	0	22	4	0	0	3	
+0	16	
+
+分析结果
+序号	一级分类		二级分类	行标记	字符(串)
+0	Boundary symbol		None		0	(
+1	Reserved symbol		true		0	true
+2	Reserved symbol		or		0	or
+3	Reserved symbol		false		0	false
+4	Boundary symbol		None		0	)
+5	Reserved symbol		and		1	and
+6	Boundary symbol		None		1	(
+7	Number symbol		+Int		1	2
+8	Operator symbol		!=		1	!=
+9	Number symbol		+Int		1	4
+10	Boundary symbol		None		1	)
+11	Reserved symbol		or		2	or
+12	Boundary symbol		None		2	(
+13	Letter symbol		None		3	a
+14	Operator symbol		>		3	>
+15	Other symbol		None		3	b
+16	Boundary symbol		None		4	)
